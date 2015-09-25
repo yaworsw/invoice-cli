@@ -1,7 +1,9 @@
+
+
 GLOBAL.path     = require('path');
 GLOBAL.fs       = require('fs');
 
-GLOBAL.ROOT     = path.join(process.env.PWD, 'data');
+GLOBAL.ROOT     = path.join(process.cwd(), 'data');
 GLOBAL.noop     = function() {};
 
 GLOBAL.chalk    = require('chalk');

@@ -2,6 +2,15 @@
   "dependencies": {
     "diskdb": "^0.1.14",
     "chalk": "^1.1.1",
-    "inquirer": "^0.10.0"
+    "inquirer": "^0.10.0",
+    "lodash": "^3.10.1"
+  },
+  "devDependencies": {
+    "sinon": "^1.17.0",
+    "cucumber": "^0.6.0",
+    "fs-extra": "^0.24.0",
+    "ansi-escapes": "^1.1.0",
+    "pty.js": "^0.3.0",
+    "bluebird": "^2.10.1"
   }
 }
