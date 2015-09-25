@@ -1,0 +1,7 @@
+#!/usr/bin/env node
+
+var invoice = require('./../');
+
+var ADD_CLIENT  = 0;
+var ADD_INVOICE = 1;
+
