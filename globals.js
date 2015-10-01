@@ -1,16 +1,16 @@
-
-
 GLOBAL.path     = require('path');
 GLOBAL.fs       = require('fs');
 
 GLOBAL.ROOT     = path.join(process.cwd(), 'data');
 GLOBAL.noop     = function() {};
 
+GLOBAL._        = require('lodash');
 GLOBAL.chalk    = require('chalk');
 
 GLOBAL.inquirer = require('inquirer');
 GLOBAL.db       = require('diskdb');
 
+GLOBAL.utils    = require('./lib/utils');
 GLOBAL.model    = require('./lib/model');
 GLOBAL.state    = require('./lib/state');
 
@@ -33,7 +33,4 @@ try {
 
 }
 
-GLOBAL.settings = Setting.all().reduce(function(acc, setting) {
-  acc[setting.data.name] = setting;
-  return acc;
-}, {});
+require('./lib/bootstrap');

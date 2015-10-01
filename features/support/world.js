@@ -3,13 +3,14 @@ var path    = require('path');
 var pty     = require('pty.js');
 var Promise = require('bluebird');
 
-var PTY_TIMEOUT = 300;
+var PTY_TIMEOUT = 333;
 
 module.exports.World = function(cb) {
   this.ROOT      = path.join(__dirname, '..', '..');
   this.TEST_ROOT = path.join(this.ROOT, 'test', 'root');
 
   this.loadFixtureDirectory = function(name) {
+    fs.emptyDirSync(this.TEST_ROOT);
     fs.copySync(path.join(this.ROOT, 'test', 'fixtures', 'directories', name), this.TEST_ROOT, { clobber: true });
   };
 

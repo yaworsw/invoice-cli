@@ -18,11 +18,17 @@ module.exports = function() {
    */
 
   this.Around(function(yield) {
+    fs.emptyDirSync(this.TEST_ROOT);
+    fs.rmdirSync(this.TEST_ROOT);
     fs.mkdirSync(this.TEST_ROOT);
     yield(function() {
       fs.emptyDirSync(this.TEST_ROOT);
       fs.rmdirSync(this.TEST_ROOT);
     });
+  });
+
+  this.Before(function() {
+    this.loadFixtureDirectory('default');
   });
 
 };
