@@ -41,7 +41,7 @@ module.exports = function() {
 
   this.Then(/^I should be at the main menu$/, function (callback) {
     var out = this.output();
-    if (out.indexOf("What would you like to do?") > 0) {
+    if (out.indexOf("what would you like to do?") > 0) {
       callback();
     } else {
       callback.fail(out);

@@ -9,10 +9,10 @@ Feature: Editing User Settings
     And I select "Settings"
 
   Scenario Outline: Editing a setting
-    When I select <name>
-    Then I should be asked <question>
+    When I select "<name>"
+    Then I should be asked "<question>"
 
     Examples:
-      | name  | question           |
-      | Email |  |
-      | Name  |  |
+      | name  | question                     |
+      | Email |  What is your email address? |
+      | Name  |  What is your name           |
