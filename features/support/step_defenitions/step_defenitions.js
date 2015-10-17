@@ -112,4 +112,9 @@ module.exports = function() {
     }
   });
 
+  this.Given(/^I have a client$/, function (callback) {
+    // Write code here that turns the phrase above into concrete actions
+    callback.pending();
+  });
+
 };
