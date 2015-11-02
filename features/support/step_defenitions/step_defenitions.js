@@ -1,4 +1,3 @@
-var ansi    = require('ansi-escapes');
 var Promise = require('bluebird');
 
 module.exports = function() {
@@ -78,29 +77,8 @@ module.exports = function() {
     return this.write('accounting@mega-corp.com');
   });
 
-  this.Given(/^I select "([^"]*)"$/, function (nameOfThingIWantToGoTo, callback) {
-    var self = this;
-
-    var out = this.output().split('\n');
-    out.reverse();
-
-    var indexOfThingIWantToGoTo, indexOfThingThatIsSelected;
-    for (var i in out) {
-      var cur = out[i];
-      if (cur.indexOf(nameOfThingIWantToGoTo) > 0) { indexOfThingIWantToGoTo    = i; }
-      if (cur.indexOf('\u001b[36m❯') == 0)         { indexOfThingThatIsSelected = i; }
-    }
-
-    var promise = Promise.resolve();
-    for (var i = indexOfThingIWantToGoTo; i < indexOfThingThatIsSelected; i++) {
-      promise = promise.then(function() {
-        return self.send(ansi.cursorDown());
-      })
-    }
-
-    promise.then(function() {
-      self.send('\r').then(callback);
-    });
+  this.Given(/^I select "([^"]*)"$/, function (nameOfThingIWantToGoTo) {
+    return this.select(nameOfThingIWantToGoTo);
   });
 
   this.Then(/^I should see "([^"]*)"$/, function (thingToSee, callback) {
@@ -112,9 +90,13 @@ module.exports = function() {
     }
   });
 
-  this.Given(/^I have a client$/, function (callback) {
-    // Write code here that turns the phrase above into concrete actions
-    callback.pending();
+  this.Given(/^I have a client named "([^"]*)"(?: with the email "([^"]*)")?$/, function (clientName, clientEmail, callback) {
+    var self = this;
+    return self.select('Add Client').then(function() {
+      return self.write(clientName);
+    }).then(function() {
+      return self.write(clientEmail || self.generateRandomEmail());
+    });
   });
 
 };

@@ -15,4 +15,4 @@ Feature: Editing User Settings
     Examples:
       | name  | question                     |
       | Email |  What is your email address? |
-      | Name  |  What is your name           |
+      | Name  |  What is your name?          |

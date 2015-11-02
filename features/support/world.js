@@ -2,6 +2,7 @@ var fs      = require('fs-extra');
 var path    = require('path');
 var pty     = require('pty.js');
 var Promise = require('bluebird');
+var ansi    = require('ansi-escapes');
 
 var PTY_TIMEOUT = 333;
 
@@ -54,6 +55,44 @@ module.exports.World = function(cb) {
       this.cli.kill();
       this.cli = null;
     }
+  };
+
+  this.select = function(thingToSelect, callback) {
+    var self = this;
+
+    if (callback === undefined) { callback = function() {}; }
+
+    return new Promise(function(resolve, reject) {
+      var out = self.output().split('\n');
+      out.reverse();
+
+      var indexOfThingIWantToGoTo, indexOfThingThatIsSelected;
+      for (var i in out) {
+        var cur = out[i];
+        if (cur.indexOf(thingToSelect) > 0)  { indexOfThingIWantToGoTo    = i; }
+        if (cur.indexOf('\u001b[36m❯') == 0) { indexOfThingThatIsSelected = i; }
+      }
+
+      var promise = Promise.resolve();
+      for (var i = indexOfThingIWantToGoTo; i < indexOfThingThatIsSelected; i++) {
+        promise = promise.then(function() {
+          return self.send(ansi.cursorDown());
+        })
+      }
+
+      promise.then(function() {
+        self.send('\r')
+          .then(callback)
+          .then(function() {
+            resolve();
+          });
+      });
+    });
+  };
+
+  this.generateRandomEmail = function() {
+    return 'random@email.com'; // chosen by fair dice roll
+                               // guaranteed to be random
   };
 
   cb(this);
