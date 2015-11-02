@@ -14,4 +14,3 @@ Feature: Selecting a client to create an invoice for
 
   Scenario: Seeing a prompt for which client I want to create an invoice for
     Then I should be asked "Which client would you like to create an invoice for?"
-
