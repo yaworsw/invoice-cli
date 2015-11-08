@@ -3,6 +3,10 @@ var Promise = require('bluebird');
 module.exports = function() {
   this.World = require('../world').World;
 
+  this.When(/^I press enter$/, function() {
+    return this.write();
+  });
+
   this.When(/^I open invoice the CLI for the first time$/, function() {
     this.loadFixtureDirectory('first-run');
     return this.run();
@@ -28,6 +32,10 @@ module.exports = function() {
     } else {
       callback.fail(out);
     }
+  });
+
+  this.When(/^I enter "([^"]*)"$/, function(textToEnter) {
+    return this.write(textToEnter);
   });
 
   this.When(/^I enter my name$/, function () {

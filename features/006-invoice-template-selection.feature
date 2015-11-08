@@ -1,4 +1,4 @@
-@006 @invoices
+@006 @invoices @fast
 Feature: Selecting an invoice template
   As a user of invoice CLI
   I want to be able to select an invoice template

@@ -6,6 +6,7 @@ GLOBAL.noop     = function() {};
 
 GLOBAL._        = require('lodash');
 GLOBAL.chalk    = require('chalk');
+GLOBAL.moment   = require('moment');
 
 GLOBAL.inquirer = require('inquirer');
 GLOBAL.db       = require('diskdb');

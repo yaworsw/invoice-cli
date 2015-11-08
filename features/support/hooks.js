@@ -31,4 +31,12 @@ module.exports = function() {
     this.loadFixtureDirectory('default');
   });
 
+  this.Before(function() {
+    this.ptyWait = 200;
+  });
+
+  this.Before('@fast', function() {
+    this.ptyWait = 75;
+  });
+
 };

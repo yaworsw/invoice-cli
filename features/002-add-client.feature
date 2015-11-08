@@ -17,11 +17,13 @@ Feature: Add Client
     When I choose to add a new client
     Then I should be asked to "Enter a name for the client"
 
+  @fast
   Scenario: Setting a new client's email
     When I choose to add a new client
     And I enter the client's name
     Then I should be asked to "Enter the email address for the client"
 
+  @fast
   Scenario: Being taken back to the main menu after adding a client
     When I choose to add a new client
     And I enter the client's name

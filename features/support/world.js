@@ -4,62 +4,60 @@ var pty     = require('pty.js');
 var Promise = require('bluebird');
 var ansi    = require('ansi-escapes');
 
-var PTY_TIMEOUT = 333;
-
 module.exports.World = function(cb) {
-  this.ROOT      = path.join(__dirname, '..', '..');
-  this.TEST_ROOT = path.join(this.ROOT, 'test', 'root');
+  var self = this;
 
-  this.loadFixtureDirectory = function(name) {
-    fs.emptyDirSync(this.TEST_ROOT);
-    fs.copySync(path.join(this.ROOT, 'test', 'fixtures', 'directories', name), this.TEST_ROOT, { clobber: true });
+  self.ROOT        = path.join(__dirname, '..', '..');
+  self.TEST_ROOT   = path.join(self.ROOT, 'test', 'root');
+
+  self.loadFixtureDirectory = function(name) {
+    fs.emptyDirSync(self.TEST_ROOT);
+    fs.copySync(path.join(self.ROOT, 'test', 'fixtures', 'directories', name), self.TEST_ROOT, { clobber: true });
   };
 
   var cliOutput = '';
-  this.cli = null;
-  this.run = function() {
+  self.cli = null;
+  self.run = function() {
     var args = Array.prototype.slice.call(arguments);
 
-    this.cli = pty.spawn(path.join(this.ROOT, 'bin', 'invoice'), args, {
-      cwd: this.TEST_ROOT
+    self.cli = pty.spawn(path.join(self.ROOT, 'bin', 'invoice'), args, {
+      cwd: self.TEST_ROOT
     });
 
-    this.cli.on('data', function(data) {
+    self.cli.on('data', function(data) {
       cliOutput += data;
     });
 
     return new Promise(function(resolve) {
-      setTimeout(resolve, PTY_TIMEOUT);
+      setTimeout(resolve, self.ptyWait);
     });
   };
 
-  this.output = function() {
+  self.output = function() {
     var temp  = cliOutput;
     cliOutput = '';
     return temp;
   };
 
-  this.send = function(msg) {
-    this.cli.write(msg);
+  self.send = function(msg) {
+    self.cli.write(msg);
     return new Promise(function(resolve) {
-      setTimeout(resolve, PTY_TIMEOUT);
+      setTimeout(resolve, self.ptyWait);
     });
   }
 
-  this.write = function(msg) {
-    return this.send(msg + '\n');
+  self.write = function(msg) {
+    return self.send(msg + '\n');
   };
 
-  this.close = function() {
-    if (this.cli) {
-      this.cli.kill();
-      this.cli = null;
+  self.close = function() {
+    if (self.cli) {
+      self.cli.kill();
+      self.cli = null;
     }
   };
 
-  this.select = function(thingToSelect, callback) {
-    var self = this;
-
+  self.select = function(thingToSelect, callback) {
     if (callback === undefined) { callback = function() {}; }
 
     return new Promise(function(resolve, reject) {
@@ -90,7 +88,7 @@ module.exports.World = function(cb) {
     });
   };
 
-  this.generateRandomEmail = function() {
+  self.generateRandomEmail = function() {
     return 'random@email.com'; // chosen by fair dice roll
                                // guaranteed to be random
   };

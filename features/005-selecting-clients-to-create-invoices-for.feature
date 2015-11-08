@@ -1,4 +1,4 @@
-@005 @invoices
+@005 @invoices @fast
 Feature: Selecting a client to create an invoice for
   As a user of invoice CLI
   I want to be asked which client I want to create an invoice for
