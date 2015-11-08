@@ -35,6 +35,10 @@ module.exports = function() {
     this.ptyWait = 200;
   });
 
+  this.Before('@slow', function() {
+    this.ptyWait = 300;
+  });
+
   this.Before('@fast', function() {
     this.ptyWait = 75;
   });

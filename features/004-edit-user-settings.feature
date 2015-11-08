@@ -1,4 +1,4 @@
-@004 @settings
+@004 @settings @wip
 Feature: Editing User Settings
   As a user of invoice CLI
   I want to be see edit the settings I entered the first time I ran the CLI

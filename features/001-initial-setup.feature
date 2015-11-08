@@ -7,6 +7,7 @@ Feature: Initial setup
   Background:
     Given I open invoice the CLI for the first time
 
+  @slow
   Scenario: Prompt shown upon first launch
     Then I should be welcomed
 

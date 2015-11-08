@@ -1,0 +1,21 @@
+[
+  {
+    "name": "name",
+    "message": "What is your name?",
+    "display": true,
+    "_id": "b42483aef6144e32a979eb9a7ec0f514",
+    "value": "John Snow"
+  },
+  {
+    "name": "email",
+    "message": "What is your email address?",
+    "display": true,
+    "_id": "8d3c0f27506e4def878d55b43f7c8e74",
+    "value": "admin@the-wall.org"
+  },
+  {
+    "name": "setup-completed",
+    "display": false,
+    "_id": "88f556ef13834537be904433ea59f97b"
+  }
+]

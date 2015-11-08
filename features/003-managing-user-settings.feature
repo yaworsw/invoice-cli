@@ -8,6 +8,7 @@ Feature: Managing User Settings
     Given I open the invoice the CLI
     And I select "Settings"
 
+  @slow
   Scenario Outline: Settings menu displays my currently entered information
     Then I should see "<name> (<value>)"
 

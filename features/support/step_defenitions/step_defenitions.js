@@ -12,6 +12,11 @@ module.exports = function() {
     return this.run();
   });
 
+  this.Given(/^I have created some invoices before$/, function (callback) {
+    this.loadFixtureDirectory('has-some-invoices');
+    return this.run();
+  });
+
   this.When(/^I open the invoice the CLI$/, function (callback) {
     return this.run();
   });

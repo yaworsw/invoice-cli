@@ -11,6 +11,8 @@ GLOBAL.moment   = require('moment');
 GLOBAL.inquirer = require('inquirer');
 GLOBAL.db       = require('diskdb');
 
+GLOBAL.Table    = require('./lib/Table');
+
 GLOBAL.utils    = require('./lib/utils');
 GLOBAL.model    = require('./lib/model');
 GLOBAL.state    = require('./lib/state');

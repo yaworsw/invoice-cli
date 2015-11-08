@@ -1,0 +1,26 @@
+[
+  {
+    "client": {
+      "name": "First Client",
+      "email": "accounting@client1.com",
+      "_id": "f33ddcbbc0ff444da690a3ee9b1eebae"
+    },
+    "template": "biweekly",
+    "start": "2015-10-24T23:00:00.000Z",
+    "end": "2015-11-08T00:00:00.000Z",
+    "name": "Invoice #01",
+    "lineItems": [
+      {
+        "name": "Week of Oct 25th",
+        "cost": "50",
+        "qty": "40"
+      },
+      {
+        "name": "Week of Nov 1st",
+        "cost": "50",
+        "qty": "38"
+      }
+    ],
+    "_id": "a0ade61c39ae43859267848ee962c823"
+  }
+]
